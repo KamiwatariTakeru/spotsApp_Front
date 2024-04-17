@@ -47,33 +47,47 @@ const Home: FC<Props> = ({spots}: Props) => {
   };
 
   return (
-    <div className = "font-bold ">
-      {/* 検索欄 */}
-      <form onSubmit={handleSearch}>
-        <label>検索:</label>
-        <textarea
-          value={word}
-          onChange={handleWordChange}
-        />
-        <button type="submit">
-          検索
-        </button>
-      </form>
+      <div className="container max-w-full pt-10 pb-72">
+        {/* 検索欄 */}
+        <form onSubmit={handleSearch} className="flex justify-center items-center gap-4">
+          <label className="mr-5">検索:</label>
+          <textarea
+            value={word}
+            onChange={handleWordChange}
+            className="h-6"
+          />
+          <button type="submit" className="mx-10">
+            検索
+          </button>
+        </form>
 
-      {/* 投稿表示欄 */}
-      {spots && spots.length === 0 ? (
-        <p>該当する結果はありません。</p>
-      ) : (
-        spots.map((spot: Spot) => (
-          <div key={spot.id}>
-            <button onClick={() => handleSpotClick(spot.id)}>
-              <h2>{spot.name}</h2>
-            </button>
-            <p>{spot.address}</p>
-          </div>
-        ))
-      )}
-    </div>
+        <div className="mt-10">
+          {/* 投稿表示欄 */}
+          {spots && spots.length === 0 ? (
+            <p>該当する結果はありません。</p>
+          ) : (
+            spots.map((spot: Spot) => (
+              <div key={spot.id} className="w-1/2 h-10 mt-4 mb-4 mx-auto flex justify-center items-center gap-4 text-black bg-white rounded shadow-lg">
+                <button onClick={() => handleSpotClick(spot.id)}>
+                  <h2>{spot.name}</h2>
+                </button>
+                {/* 星の表示 */}
+                <div className="flex items-center">
+                {[1, 2, 3].map((star) => (
+                  <span
+                    key={star}
+                    style={{ color: star <= spot.stars_avg ? 'gold' : 'gray' }}
+                    className="px-1"
+                  >
+                    ★
+                  </span>
+                ))}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
   );
 }
 

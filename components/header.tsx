@@ -1,5 +1,4 @@
 // components/Header.tsx
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Login from './Login';
 
@@ -16,11 +15,8 @@ const Header: React.FC = () => {
   return (
     <header>
       <nav>
-        <ul className = "font-bold flex justify-end items-center gap-4">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
+        <ul className="font-bold flex items-center gap-4"> {/* w-full クラスを追加 */}
+          <li className="flex justify-start items-center pl-3 w-1/2"> {/* 左寄せにするために w-1/2 クラスを追加 */}
             {/* トップページの時は戻るボタンを表示しない */}
             {!isTopPage &&
               <button onClick={handleGoBack}>
@@ -28,7 +24,7 @@ const Header: React.FC = () => {
               </button>
             }
           </li>
-          <li>
+          <li className="flex justify-end pr-3 w-1/2"> {/* 右寄せにするために w-1/2 クラスを追加 */}
             <Login />
           </li>
           {/* 他のリンクを追加 */}

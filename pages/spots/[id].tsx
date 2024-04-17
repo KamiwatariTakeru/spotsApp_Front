@@ -20,17 +20,39 @@ const Home: FC<Props> = ({spot}: Props) => {
 
   const { data: session } = useSession();
   return (
-    <div>
-      {spot.name}
-      {spot.stars_avg}
-      <GoogleMap spotId = {spot.id}/>
-      {
-        session && (
-          <button onClick={() => router.push(`/spots/feedback/${spot.id}`)}>
-            評価する
-          </button>
-        )
-      }
+    <div className="flex container justify-center pt-12">
+      <div className="flex-col">
+        <div className="flex items-center h-10 bg-white rounded shadow-lg">
+          <span className="pl-7 pr-28">{spot.name}</span>
+          {[1, 2, 3].map((star) => (
+            <span
+              key={star}
+              style={{ color: star <= spot.stars_avg ? 'gold' : 'gray' }}
+              className="px-1"
+            >
+              ★
+            </span>
+          ))}
+        </div>
+        <div className="pt-5 text-xl">
+          住所
+        </div>
+        <div>
+          {spot.address}
+        </div>
+        <div className="mt-5">
+          <div className="shadow-lg">
+            <GoogleMap spotId={spot.id}/>
+          </div>
+          <div className="flex justify-center mt-10">
+            {session && (
+              <button onClick={() => router.push(`/spots/feedback/${spot.id}`)} className="h-10 w-20 flex justify-center items-center bg-blue-400 rounded text-white">
+                評価する
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

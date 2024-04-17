@@ -36,22 +36,28 @@ const Home: FC = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>名称:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-        />
-        <label>住所:</label>
-        <textarea
-          value={address}
-          onChange={handleAddressChange}
-        />
-        <button type="submit">
-          投稿
-        </button>
+    <div className="flex flex-col container bg-green-500 pt-20 w-full pb-96">
+      <form onSubmit={handleSubmit} className="flex flex-col w-full">
+        <div className="flex justify-center">
+          <label>名称</label>
+          <input
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+          />
+        </div>
+        <div className="flex justify-center mt-10">
+          <label>住所</label>
+          <textarea
+            value={address}
+            onChange={handleAddressChange}
+          />
+        </div>
+        <div className="flex justify-center mt-32">
+          <button type="submit" className="h-10 w-20 flex justify-center items-center bg-blue-400 rounded text-white">
+            投稿
+          </button>
+        </div>
       </form>
     </div>
   )

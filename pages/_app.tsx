@@ -14,12 +14,16 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: MyAppProps):
   return (
     <div>
       <SessionProvider session={session}>
-        <Header />
-        <main>
+        <div className="fixed top-0 bg-teal-400 w-full h-10">
+          <Header />
+        </div>
+        <main className = "flex fixed top-10 justify-center bg-emerald-100 pb-32 w-full">
           <Component {...pageProps} />
         </main>
         {/* 他の共通のコンポーネントやフッターなどを追加できます */}
-        <Footer />
+        <div className="bg-teal-400 fixed bottom-0 w-full h-10">
+          <Footer />
+        </div>
       </SessionProvider>
     </div>
   );

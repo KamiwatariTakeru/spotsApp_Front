@@ -45,22 +45,36 @@ const Home: FC<Props> = ({spot}: Props) => {
   };
 
   return (
-    <div>
-      {spot.name}
-      <div>
-        {[1, 2, 3].map((star) => (
-          <span
-            key={star}
-            onClick={() => handleStarClick(star)}
-            style={{ cursor: 'pointer', color: star <= starsAmount ? 'gold' : 'gray' }}
-          >
-            ★
-          </span>
-        ))}
+    <div className="container flex flex-col w-full">
+      <div className="container mx-auto flex justify-center pt-16">
+        <div className="px-5 flex justify-between items-center h-10 w-3/5 bg-white rounded shadow-lg">
+          {spot.name}
+        </div>
       </div>
-      <button onClick={() => handleEvaluateClick(spot.id, starsAmount)}>
-        評価する
-      </button>
+      <div className="container mx-auto flex justify-center">
+        <div className="flex-row pt-16 text-2xl">
+          <div className="text-2xl">
+            評価する
+          </div>
+          <div className="mt-5 text-3xl">
+          {[1, 2, 3].map((star) => (
+              <span
+                key={star}
+                onClick={() => handleStarClick(star)}
+                style={{ cursor: 'pointer', color: star <= starsAmount ? 'gold' : 'gray' }}
+                >
+                ★
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto flex justify-center pt-48 pb-16">
+        <button onClick={() => handleEvaluateClick(spot.id, starsAmount)}
+        className="h-10 w-20 flex justify-center items-center bg-blue-400 rounded text-white">
+          確定
+        </button>
+      </div>
     </div>
   )
 }
