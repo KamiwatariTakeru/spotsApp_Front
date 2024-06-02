@@ -20,8 +20,6 @@ const authOptions: NextAuthOptions = {
   callbacks: {
     async signIn({ user, account }) {
 
-      console.log('user1', user);
-
       const provider = account?.provider;
 			const uid = user?.id;
 			const name = user?.name;
