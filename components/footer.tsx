@@ -1,6 +1,5 @@
 // components/Footer.tsx
 import React from 'react';
-import { HomeIcon } from './svg/homeSvg';
 
 const Footer: React.FC = () => {
   const handleHomeClick = () => {
