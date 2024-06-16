@@ -16,6 +16,8 @@ type Props = {
 }
 
 const Home: FC<Props> = ({spot}: Props) => {
+  const apiUrl = process.env.API_URL
+
   const router = useRouter();
   const [starsAmount, setStarsAmount] = useState<number>(0);
   const { data: session } = useSession();
@@ -26,9 +28,9 @@ const Home: FC<Props> = ({spot}: Props) => {
   const handleEvaluateClick = async (spot_id: string, starsAmount: number) => {
     // API実行
     try {
-      const response = await fetch(`http://localhost:3000/users/get_current_user/${session?.user.id}`);
+      const response = await fetch(`${apiUrl}/users/get_current_user/${session?.user.id}`);
       const currentUser = await response.json();
-      await axios.post("http://localhost:3000/get_evaluation_Record", {
+      await axios.post(`${apiUrl}/get_evaluation_Record`, {
         user_id: currentUser.id,
         spot_id: spot_id,
         starsAmount: starsAmount
@@ -80,7 +82,9 @@ const Home: FC<Props> = ({spot}: Props) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://api:3000/spots");
+  const apiUrl = process.env.API_URL
+
+  const res = await fetch(`${apiUrl}/spots`);
   const spots: Spot[] = await res.json();
 
   // Get the paths we want to pre-render based on posts
@@ -95,7 +99,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  const response = await fetch(`http://api:3000/spots/${params.id}`);
+  const apiUrl = process.env.API_URL
+
+  const response = await fetch(`${apiUrl}/${params.id}`);
   const spot = await response.json();
 
   return {
