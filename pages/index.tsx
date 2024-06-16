@@ -15,6 +15,8 @@ type Props = {
   spots: Spot[];
 }
 
+const apiUrl = process.env.API_URL
+
 const Home: FC<Props> = ({spots}: Props) => {
   const [word, setWord] = useState("");
   const router = useRouter();
@@ -96,7 +98,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   const { word } = context.query;
 
   let response;
-  const apiUrl = process.env.API_URL
 
   if (word) {
     console.log("aaaaaaaaa");

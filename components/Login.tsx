@@ -1,9 +1,10 @@
 // components/Login.tsx
 import { useSession, signIn, signOut } from "next-auth/react";
 
+const apiUrl = process.env.API_URL
+
 const Login: React.FC = () => {
   const { data: session } = useSession();
-  const apiUrl = process.env.API_URL
 
   return (
     <div>
