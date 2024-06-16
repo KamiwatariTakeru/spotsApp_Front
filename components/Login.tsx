@@ -3,13 +3,15 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 const Login: React.FC = () => {
   const { data: session } = useSession();
+  const apiUrl = process.env.API_URL
+
   return (
     <div>
       {
         // セッションがある場合、ログアウトを表示
         session && (
           <div>
-            <button onClick={() => signOut({ callbackUrl: "http://localhost:8000" })}>ログアウト</button>
+            <button onClick={() => signOut({ callbackUrl: `${apiUrl}` })}>ログアウト</button>
           </div>
         )
       }
@@ -20,7 +22,7 @@ const Login: React.FC = () => {
           <div>
             <button
               onClick={() =>
-                signIn("", { callbackUrl: "http://localhost:8000" })
+                signIn("", { callbackUrl: `${apiUrl}` })
               }
             >
               ログイン
