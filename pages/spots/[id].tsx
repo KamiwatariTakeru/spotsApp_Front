@@ -58,7 +58,9 @@ const Home: FC<Props> = ({spot}: Props) => {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch("http://api:3000/spots");
+  const apiUrl = process.env.API_URL
+
+  const res = await fetch(`${apiUrl}/spots`);
   const spots: Spot[] = await res.json();
 
   // Get the paths we want to pre-render based on posts
@@ -73,8 +75,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-    const response = await fetch(`http://api:3000/spots/${params.id}`);
-    const spot = await response.json();
+  const apiUrl = process.env.API_URL
+
+  const response = await fetch(`${apiUrl}/${params.id}`);
+  const spot = await response.json();
 
   return {
     props: {
