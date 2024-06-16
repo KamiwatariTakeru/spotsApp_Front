@@ -7,6 +7,7 @@ const Home: FC = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const router = useRouter();
+  const apiUrl = process.env.API_URL
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("Name changed:", e.target.value);
@@ -22,7 +23,7 @@ const Home: FC = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:3000/spots", {
+      await axios.post(`${apiUrl}/spots`, {
         name: name,
         address: address,
         stars_sum: 0,

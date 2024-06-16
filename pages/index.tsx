@@ -96,14 +96,16 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   const { word } = context.query;
 
   let response;
+  const apiUrl = process.env.API_URL
+
   if (word) {
     console.log("aaaaaaaaa");
     // 検索結果表示の場合のAPI実行
-    response = await fetch(`http://api:3000/search_spot?word=${word}`);
+    response = await fetch(`${apiUrl}/search_spot?word=${word}`);
   } else {
     console.log("bbbbbbbbbb");
     // 投稿一覧表示の場合のAPI実行
-    response = await fetch("http://api:3000/spots");
+    response = await fetch(`${apiUrl}/spots`);
   }
 
   const spots = await response.json();
