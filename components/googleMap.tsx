@@ -12,6 +12,8 @@ interface Coords {
   lng: number;
 }
 
+const apiUrl = process.env.API_URL
+
 const GoogleMap: React.FC<CreateProps> = (props) => {
   const googleMapKey: string = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY || '';
   const [markers, setMarkers] = useState<Array<Coords>>([{ lat: 0, lng: 0 }]);
@@ -30,7 +32,7 @@ const GoogleMap: React.FC<CreateProps> = (props) => {
     const fetchDefaultLatLng = async () => {
       try {
         console.log(props.spotId);
-        const response = await fetch(`http://localhost:3000/spots/getCoordinate/${props.spotId}`);
+        const response = await fetch(`${apiUrl}/spots/getCoordinate/${props.spotId}`);
         const location = await response.json();
         console.log(location.lat);
         console.log(location.lng);

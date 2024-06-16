@@ -15,8 +15,9 @@ type Props = {
   spot: Spot;
 }
 
+const apiUrl = process.env.API_URL
+
 const Home: FC<Props> = ({spot}: Props) => {
-  const apiUrl = process.env.API_URL
 
   const router = useRouter();
   const [starsAmount, setStarsAmount] = useState<number>(0);
@@ -82,7 +83,6 @@ const Home: FC<Props> = ({spot}: Props) => {
 }
 
 export async function getStaticPaths() {
-  const apiUrl = process.env.API_URL
 
   const res = await fetch(`${apiUrl}/spots`);
   const spots: Spot[] = await res.json();
@@ -99,7 +99,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
-  const apiUrl = process.env.API_URL
 
   const response = await fetch(`${apiUrl}/${params.id}`);
   const spot = await response.json();

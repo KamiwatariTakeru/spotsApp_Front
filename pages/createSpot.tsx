@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 
+const apiUrl = process.env.API_URL
+
 const Home: FC = () => {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const router = useRouter();
-  const apiUrl = process.env.API_URL
 
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log("Name changed:", e.target.value);
