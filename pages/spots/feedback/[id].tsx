@@ -100,6 +100,7 @@ export async function getStaticPaths() {
   } catch (error) {
     console.error('Fetch error:', error);
     // エラーハンドリング
+    return { paths: [], fallback: false };
   }
 }
 
