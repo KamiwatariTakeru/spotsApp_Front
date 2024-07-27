@@ -60,19 +60,24 @@ const Home: FC<Props> = ({spot}: Props) => {
 }
 
 export async function getStaticPaths() {
+  try{
+    const res = await fetch(`${apiUrl}/spots`);
+    const spots: Spot[] = await res.json();
 
-  const res = await fetch(`${apiUrl}/spots`);
-  const spots: Spot[] = await res.json();
+    // Get the paths we want to pre-render based on posts
+    const paths = spots.map((spot) => ({
+      params: { id: spot.id.toString() },
+    }));
 
-  // Get the paths we want to pre-render based on posts
-  const paths = spots.map((spot) => ({
-    params: { id: spot.id.toString() },
-  }));
+    // We'll pre-render only these paths at build time.
+    // { fallback: 'blocking' } will server-render pages
+    // on-demand if not generated at build time.
+    return { paths, fallback: true };
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: 'blocking' } will server-render pages
-  // on-demand if not generated at build time.
-  return { paths, fallback: true };
+  } catch (error) {
+    console.error('Fetch error:', error);
+    // エラーハンドリング
+  }
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
