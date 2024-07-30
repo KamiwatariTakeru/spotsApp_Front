@@ -4,10 +4,7 @@ import axios from 'axios';
 import { JWT } from 'next-auth/jwt';
 import { User } from 'next-auth';
 
-
-
-
-const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+const apiUrl = process.env.API_URL;
 
 const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
