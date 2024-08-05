@@ -110,6 +110,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     console.log(`${apiUrl}/spots`);
     // 投稿一覧表示の場合のAPI実行
     response = await fetch(`${apiUrl}/spots`);
+    console.log("response");
     console.log(response);
   }
 
