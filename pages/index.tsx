@@ -110,12 +110,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     console.log(`${apiUrl}/spots`);
     // 投稿一覧表示の場合のAPI実行
     response = await fetch(`${apiUrl}/spots`);
-    console.log("response");
     console.log(response);
   }
 
-  const spots = await response.json();
-  console.log('Fetched spots:', spots);
+  if (!response.ok) {
+    console.error('Failed to fetch:', response.status, response.statusText);
+    // 空の配列を返却
+    return { props: { spots: [] } };
+  }
+
+  let spots = [];
+  try {
+    spots = await response.json();
+    console.log('Fetched spots:', spots);
+  } catch (error) {
+    console.error('Error parsing JSON:', error);
+  }
+
   return { props: { spots: spots || [] } };
 };
 
