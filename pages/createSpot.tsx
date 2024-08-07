@@ -24,9 +24,9 @@ const Home: FC = () => {
     e.preventDefault();
 
     try {
-      console.error(name);
-      console.error(address);
-      console.error(`${apiUrl}`);
+      console.log(name);
+      console.log(address);
+      console.log(`${apiUrl}`);
 
       await axios.post(`${apiUrl}/spots`, {
         name: name,
@@ -36,7 +36,7 @@ const Home: FC = () => {
       });
       router.push("/");
     } catch (error) {
-      console.error("1エラー");
+      console.log("1エラー");
       alert("Error creating spot1");
       console.error(error);
     }
