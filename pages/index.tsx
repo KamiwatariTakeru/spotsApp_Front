@@ -100,17 +100,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
   let response;
 
   if (word) {
-    console.log(`${apiUrl}`);
-    console.log(`${apiUrl}/search_spot?word=${word}`);
     // 検索結果表示の場合のAPI実行
     response = await fetch(`${apiUrl}/search_spot?word=${word}`);
-    console.log(response);
   } else {
-    console.log(`${apiUrl}`);
-    console.log(`${apiUrl}/spots`);
     // 投稿一覧表示の場合のAPI実行
     response = await fetch(`${apiUrl}/spots`);
-    console.log(response);
   }
 
   if (!response.ok) {
