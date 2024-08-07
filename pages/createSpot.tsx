@@ -37,7 +37,7 @@ const Home: FC = () => {
       router.push("/");
     } catch (error) {
       console.error("1エラー");
-      alert("Error creating spot");
+      alert("Error creating spot1");
       console.error(error);
     }
   };
