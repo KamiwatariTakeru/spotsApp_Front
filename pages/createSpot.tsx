@@ -36,9 +36,13 @@ const Home: FC = () => {
       });
       router.push("/");
     } catch (error) {
-      console.log("1エラー");
-      alert("Error creating spot1");
-      console.error(error);
+      console.log("エラーが発生しました。");
+      alert("Error creating spot. 詳細はコンソールを確認してください。");
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error: ", error.response?.data || error.message);
+      } else {
+        console.error("Unexpected error: ", error);
+      }
     }
   };
 
