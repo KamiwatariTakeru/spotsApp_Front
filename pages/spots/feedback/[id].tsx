@@ -105,16 +105,30 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
+  try {
+    const response = await fetch(`${apiUrl}/${params.id}`);
 
-  const response = await fetch(`${apiUrl}/${params.id}`);
-  const spot = await response.json();
+    if (!response.ok) {
+      throw new Error(`Failed to fetch spot data: ${response.statusText}`);
+    }
 
-  return {
-    props: {
-      spot: spot
-    },
-    revalidate: 10,
-  };
+    const spot = await response.json();
+
+    // Check if the response is as expected
+    if (!spot) {
+      throw new Error('Data spot is null or undefined');
+    }
+
+    return {
+      props: {
+        spot: spot
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.error('Error fetching spot data:', error);
+    throw new Error('Error was thrown in getStaticProps');
+  }
 }
 
 export default Home;

@@ -21,11 +21,6 @@ const Home: FC<Props> = ({spot}: Props) => {
   const router = useRouter();
   const { data: session } = useSession();
 
-  // spotがnullまたはundefinedの場合にエラーメッセージを表示
-  if (!spot) {
-    return <div>Post not found</div>;
-  }
-
   return (
     <div className="flex container justify-center pt-12">
       <div className="flex-col">
@@ -90,23 +85,23 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
     const response = await fetch(`${apiUrl}/${params.id}`);
     if (!response.ok) {
-      throw new Error('Failed to fetch spot data');
+      throw new Error('Response was not ok');
     }
     const spot = await response.json();
 
+    if (!spot) {
+      throw new Error('Data spot is null or undefined');
+    }
+
     return {
       props: {
-        spot: spot || null, // nullをデフォルトに設定
+        spot: spot,
       },
       revalidate: 10,
     };
   } catch (error) {
     console.error('Error fetching spot data:', error);
-    return {
-      props: {
-        spot: null,
-      },
-    };
+    throw new Error('Error was thrown in getStaticProps');
   }
 }
 
