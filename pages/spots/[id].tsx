@@ -86,10 +86,17 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
     console.log(`${apiUrl}`);
     const response = await fetch(`${apiUrl}/${params.id}`);
     console.log(`${response}`);
+
+    // HTTPステータスコードを表示
+    console.log(`Status: ${response.status}`);
+
     if (!response.ok) {
       throw new Error('Response was not ok');
     }
+
+    // レスポンスのボディ（JSON）を表示
     const spot = await response.json();
+    console.log(`Body: ${JSON.stringify(spot)}`);
 
     if (!spot) {
       throw new Error('Data spot is null or undefined');
