@@ -83,6 +83,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
+    console.log(`${apiUrl}`);
     const response = await fetch(`${apiUrl}/${params.id}`);
     if (!response.ok) {
       throw new Error('Response was not ok');
