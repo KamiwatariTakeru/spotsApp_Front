@@ -12,7 +12,7 @@ interface Coords {
   lng: number;
 }
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 const GoogleMap: React.FC<CreateProps> = (props) => {
   const googleMapKey: string = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY || '';

@@ -16,6 +16,7 @@ type Props = {
 }
 
 const apiUrl = process.env.API_URL
+const apiUrlFromClientSide = process.env.NEXT_PUBLIC_API_URL
 
 const Home: FC<Props> = ({spot}: Props) => {
 
@@ -29,9 +30,10 @@ const Home: FC<Props> = ({spot}: Props) => {
   const handleEvaluateClick = async (spot_id: string, starsAmount: number) => {
     // API実行
     try {
-      const response = await fetch(`${apiUrl}/users/get_current_user/${session?.user.id}`);
+      console.log(`${apiUrlFromClientSide}/users/get_current_user/${session?.user.id}`);
+      const response = await fetch(`${apiUrlFromClientSide}/users/get_current_user/${session?.user.id}`);
       const currentUser = await response.json();
-      await axios.post(`${apiUrl}/get_evaluation_Record`, {
+      await axios.post(`${apiUrlFromClientSide}/get_evaluation_Record`, {
         user_id: currentUser.id,
         spot_id: spot_id,
         starsAmount: starsAmount
@@ -85,6 +87,7 @@ const Home: FC<Props> = ({spot}: Props) => {
 export async function getStaticPaths() {
 
   try{
+    console.log(`${apiUrl}/spots`);
     const res = await fetch(`${apiUrl}/spots`);
     const spots: Spot[] = await res.json();
 
@@ -106,7 +109,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
-    const response = await fetch(`${apiUrl}/${params.id}`);
+    const response = await fetch(`${apiUrl}/spots/${params.id}`);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch spot data: ${response.statusText}`);

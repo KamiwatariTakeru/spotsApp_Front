@@ -1,7 +1,7 @@
 // components/Login.tsx
 import { useSession, signIn, signOut } from "next-auth/react";
 
-const apiUrl = process.env.API_URL
+const redirectUrl = process.env.NEXTAUTH_URL
 
 const Login: React.FC = () => {
   const { data: session } = useSession();
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
         // セッションがある場合、ログアウトを表示
         session && (
           <div>
-            <button onClick={() => signOut({ callbackUrl: `${apiUrl}` })}>ログアウト</button>
+            <button onClick={() => signOut({ callbackUrl: `${redirectUrl}` })}>ログアウト</button>
           </div>
         )
       }
@@ -23,7 +23,7 @@ const Login: React.FC = () => {
           <div>
             <button
               onClick={() =>
-                signIn("", { callbackUrl: `${apiUrl}` })
+                signIn("", { callbackUrl: `${redirectUrl}` })
               }
             >
               ログイン

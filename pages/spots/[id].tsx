@@ -15,7 +15,7 @@ type Props = {
   spot: Spot;
 }
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.API_URL_FROM_SERVER_SIDE
 
 const Home: FC<Props> = ({spot}: Props) => {
   const router = useRouter();
@@ -61,6 +61,8 @@ const Home: FC<Props> = ({spot}: Props) => {
 
 export async function getStaticPaths() {
   try{
+    console.log(`${apiUrl}`);
+    console.log('cdcd');
     const res = await fetch(`${apiUrl}/spots`);
     const spots: Spot[] = await res.json();
 
@@ -84,7 +86,8 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
     console.log(`${apiUrl}`);
-    const response = await fetch(`${apiUrl}/${params.id}`);
+    console.log('cdcd');
+    const response = await fetch(`${apiUrl}/spots/${params.id}`);
     console.log(`${response}`);
 
     // HTTPステータスコードを表示
