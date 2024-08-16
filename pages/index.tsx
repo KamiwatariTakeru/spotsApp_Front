@@ -15,7 +15,7 @@ type Props = {
   spots: Spot[];
 }
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.API_URL_FROM_SERVER_SIDE
 
 const Home: FC<Props> = ({spots}: Props) => {
   const [word, setWord] = useState("");
@@ -96,7 +96,6 @@ const Home: FC<Props> = ({spots}: Props) => {
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
   // 検索ワード抽出
   const { word } = context.query;
-
   let response;
 
   if (word) {

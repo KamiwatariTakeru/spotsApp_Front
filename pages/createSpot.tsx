@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { ChangeEvent, FormEvent, useState } from "react";
 import axios from "axios";
 
-const apiUrl = process.env.API_URL
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 const Home: FC = () => {
   const [name, setName] = useState("");
@@ -21,14 +21,23 @@ const Home: FC = () => {
   };
 
   const handleSubmit = async (e: FormEvent) => {
+    console.log("aaa");
     e.preventDefault();
 
     try {
+      console.log("aaa");
       console.log(name);
       console.log(address);
-      console.log(`${apiUrl}`);
+      console.log(`${apiUrl}/spots`);
 
-      await axios.post(`${apiUrl}/spots`, {
+      console.log('Request body:', {
+        name: name,
+        address: address,
+        stars_sum: 0,
+        stars_avg: 0
+      });
+
+      await axios.post("http://localhost:3000/spots", {
         name: name,
         address: address,
         stars_sum: 0,
@@ -36,8 +45,9 @@ const Home: FC = () => {
       });
       router.push("/");
     } catch (error) {
-      console.log("エラーが発生しました。");
+      console.error("エラーが発生しました。");
       alert("Error creating spot. 詳細はコンソールを確認してください。");
+
       if (axios.isAxiosError(error)) {
         console.error("Axios error: ", error.response?.data || error.message);
       } else {
