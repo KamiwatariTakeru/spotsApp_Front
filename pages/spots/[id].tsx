@@ -15,7 +15,7 @@ type Props = {
   spot: Spot;
 }
 
-const apiUrl = process.env.API_URL_FROM_SERVER_SIDE
+const apiUrl = process.env.API_URL
 
 const Home: FC<Props> = ({spot}: Props) => {
   const router = useRouter();
