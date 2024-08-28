@@ -86,7 +86,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
     console.log(`${apiUrl}`);
-    console.log('cdcd');
+    console.log('efef');
     const response = await fetch(`${apiUrl}/spots/${params.id}`);
     console.log(`${response}`);
 
