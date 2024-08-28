@@ -53,7 +53,7 @@ const Home: FC<Props> = ({spot}: Props) => {
     <div className="container flex flex-col w-full">
       <div className="container mx-auto flex justify-center pt-16">
         <div className="px-5 flex justify-between items-center h-10 w-3/5 bg-white rounded shadow-lg">
-          {spot.name}
+          
         </div>
       </div>
       <div className="container mx-auto flex justify-center">
