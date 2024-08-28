@@ -15,7 +15,7 @@ type Props = {
   spots: Spot[];
 }
 
-const apiUrl = process.env.API_URL_FROM_SERVER_SIDE
+const apiUrl = process.env.API_URL
 
 const Home: FC<Props> = ({spots}: Props) => {
   const [word, setWord] = useState("");
