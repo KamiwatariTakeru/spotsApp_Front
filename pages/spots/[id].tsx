@@ -21,8 +21,12 @@ const Home: FC<Props> = ({spot}: Props) => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  if (!spot) {
+    return <div>spotが見つかりません</div>;
+  }
+
   console.log(`ここから確認`);
-  console.log(`Status: ${spot}`);
+  console.log(`Status: ${JSON.stringify(spot)}`);
   console.log(`Status: ${spot.address}`);
   console.log(`Status: ${spot.stars_avg}`);
   console.log(`Status: ${spot.stars_sum}`);
