@@ -21,6 +21,13 @@ const Home: FC<Props> = ({spot}: Props) => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  console.log(`ここから確認`);
+  console.log(`Status: ${spot}`);
+  console.log(`Status: ${spot.address}`);
+  console.log(`Status: ${spot.stars_avg}`);
+  console.log(`Status: ${spot.stars_sum}`);
+  console.log(`Status: ${spot.name}`);
+
   return (
     <div className="flex container justify-center pt-12">
       <div className="flex-col">
