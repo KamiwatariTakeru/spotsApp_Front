@@ -36,7 +36,7 @@ const Home: FC<Props> = ({spot}: Props) => {
     <div className="flex container justify-center pt-12">
       <div className="flex-col">
         <div className="flex items-center h-10 bg-white rounded shadow-lg">
-          <span className="pl-7 pr-28"></span>
+          <span className="pl-7 pr-28">{spot.name}</span>
           {[1, 2, 3].map((star) => (
             <span
               key={star}
@@ -51,7 +51,7 @@ const Home: FC<Props> = ({spot}: Props) => {
           住所
         </div>
         <div>
-          
+          {spot.address}
         </div>
         <div className="mt-5">
           <div className="shadow-lg">
