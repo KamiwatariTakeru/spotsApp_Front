@@ -37,7 +37,7 @@ const Home: FC = () => {
         stars_avg: 0
       });
 
-      await axios.post("http://localhost:3000/spots", {
+      await axios.post(`${apiUrl}/spots`, {
         name: name,
         address: address,
         stars_sum: 0,
