@@ -64,7 +64,9 @@ export async function getStaticPaths() {
     console.log(`${apiUrl}`);
     console.log('cdcd');
     const res = await fetch(`${apiUrl}/spots`);
+    console.log('rgrg');
     const spots: Spot[] = await res.json();
+    console.log('jkjk');
 
     // Get the paths we want to pre-render based on posts
     const paths = spots.map((spot) => ({
@@ -74,6 +76,7 @@ export async function getStaticPaths() {
     // We'll pre-render only these paths at build time.
     // { fallback: 'blocking' } will server-render pages
     // on-demand if not generated at build time.
+    console.log(`パス: ${paths}`);
     return { paths, fallback: true };
 
   } catch (error) {
