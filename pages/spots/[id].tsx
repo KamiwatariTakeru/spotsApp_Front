@@ -87,6 +87,7 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
   try {
     console.log(`${apiUrl}`);
     console.log('efef');
+    console.log(`レンダリングしているid: ${params.id}`);
     const response = await fetch(`${apiUrl}/spots/${params.id}`);
     console.log(`${response}`);
 
