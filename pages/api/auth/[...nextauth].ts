@@ -23,6 +23,12 @@ const authOptions: NextAuthOptions = {
 			const email = user?.email;
 
       try {
+        console.log("コールバックスタート");
+        console.log( `${apiUrl}/auth/${provider}/callback`);
+        console.log(provider);
+        console.log(uid);
+        console.log(name);
+        console.log(email);
         const response = await axios.post(
           `${apiUrl}/auth/${provider}/callback`,
           {
