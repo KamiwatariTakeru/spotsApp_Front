@@ -1,10 +1,17 @@
-// components/Login.tsx
 import { useSession, signIn, signOut } from "next-auth/react";
 
-const redirectUrl = process.env.NEXTAUTH_URL
+const defaultRedirectUrl = '/';
+const redirectUrl = process.env.NEXTAUTH_URL ?? defaultRedirectUrl;
+console.log('リダイレクトURL:', process.env.NEXTAUTH_URL);
+console.log('リダイレクトURL2:', redirectUrl);
 
 const Login: React.FC = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  // ロード中や認証中の場合は、UIを表示しない
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -18,7 +25,6 @@ const Login: React.FC = () => {
       }
       {
         // セッションがない場合、ログインを表示
-        // ログインボタンを押すと、ログインページに遷移する
         !session && (
           <div>
             <button

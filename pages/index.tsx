@@ -49,7 +49,7 @@ const Home: FC<Props> = ({spots}: Props) => {
   };
 
   return (
-      <div className="container max-w-full pt-10 pb-72">
+      <div className="container max-w-full pt-10 pb-72 h-screen overflow-y-auto">
         {/* 検索欄 */}
         <form onSubmit={handleSearch} className="flex justify-center items-center gap-4">
           <label className="mr-5">検索:</label>
